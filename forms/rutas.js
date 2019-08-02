@@ -32,7 +32,7 @@ export default class  rutas extends React.Component {
     render(){  
 
       let data = [{
-        value: '1',
+        value: 'Banana',
       }, {
         value: 'Mango',
       }, {
@@ -47,19 +47,18 @@ export default class  rutas extends React.Component {
           
 <View style={styles.container}>
 
-if (data == "1") {
-  <MapView
-  initialRegion={this.state.region} style={styles.map}
-  customMapStyle={mapStyle} 
-/>
-}
-  
+
+<MapView
+    initialRegion={this.state.region} style={styles.map}
+    customMapStyle={mapStyle} 
+  />
   
   <View style={{width: 200, height: 44}}>
   <Dropdown style={styles.overlay}
         label='Sector'
         data={data}
       />
+      
     </View>
   
     
