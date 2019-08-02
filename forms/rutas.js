@@ -1,41 +1,50 @@
 import React from 'react';
-import { StyleSheet, Text, View,KeyboardAvoidingView,FlatList,Callout } from 'react-native';
+import { StyleSheet, Text, View,KeyboardAvoidingView,FlatList,Callout,StatusBar } from 'react-native';
 import {Input,Card,Button,Icon, Item} from 'native-base'
 import * as firebase from 'firebase'
 import MapView from 'react-native-maps'
 import { Dropdown } from 'react-native-material-dropdown';
 import { TextInput } from 'react-native';
- 
+import { SafeAreaView } from 'react-navigation';
+import { SearchBar } from 'react-native-elements';
 
 
 export default class  rutas extends React.Component { 
 
+  constructor(props) {
+    super(props);
+    this.state = { region:{
+    latitude: 19.33915,
+    longitude:  -70.93819,
+    latitudeDelta: 0.0122,
+    longitudeDelta: 0.0121,
+  }
+}
+}
+
  
 
-    render(){
-
-      var region = {
-    latitude: 37.78825,
-    longitude: -122.4324,
-    latitudeDelta: 0.0922,
-    longitudeDelta: 0.0421,
-  };
+    render(){    
 
      
         return(  
         
           
-        
+<SafeAreaView style={{flex:1}}>       
 <View>
-<MapView style={styles.map} initialRegion={region}/>
-<Callout>
-    <View style={styles.calloutView} >
-      <TextInput style={styles.calloutSearch}
-        placeholder={"Search"}
-      />
-    </View>
-  </Callout>
-</View>   
+<StatusBar backgroundColor="rgba(1.0, 0, 0, 0.2)" translucent />
+        <SearchBar
+          ref='searchBar'
+          placeholder='Find me'
+          barStyle="black"
+          showsCancelButtonWhileEditing={false}
+        />
+
+<MapView style={styles.map} initialRegion={this.state.region}/>
+
+
+</View>
+</SafeAreaView>
         
    
                                         
