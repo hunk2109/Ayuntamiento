@@ -7,7 +7,7 @@ import { Dropdown } from 'react-native-material-dropdown';
 import { TextInput } from 'react-native';
 import { SafeAreaView } from 'react-navigation';
 import { SearchBar } from 'react-native-elements';
-import Callout from 'react-callout-component';
+
 
 
 export default class  rutas extends React.Component { 
@@ -31,18 +31,21 @@ export default class  rutas extends React.Component {
         return(  
         
           
-<View>
-  <MapView
-    initialRegion={this.state.region}
-    
-  />
-  <Callout>
-    <View style={styles.calloutView} >
+<View style={styles.container}>
+
+<View style={styles.calloutView} >
       <TextInput style={styles.calloutSearch}
         placeholder={"Search"}
       />
     </View>
-  </Callout>
+  
+  <MapView
+    initialRegion={this.state.region} style={styles.map}
+    
+  />
+  
+    
+  
 </View>
         
    
