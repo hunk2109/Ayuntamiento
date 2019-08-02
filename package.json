@@ -14,6 +14,7 @@
     "google-maps-react": "^2.0.2",
     "native-base": "^2.13.4",
     "react": "16.8.3",
+    "react-callout-component": "^2.1.0",
     "react-dom": "^16.8.6",
     "react-native": "https://github.com/expo/react-native/archive/sdk-33.0.0.tar.gz",
     "react-native-elements": "^1.1.0",
