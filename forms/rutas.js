@@ -72,7 +72,7 @@ clickme=()=>{
 		onValueChange={(itemValue,itemIndex) => this.setState({PickerValue:itemValue})}
 		>
 		<Picker.Item label="Rutas" value=""/>
-		<Picker.Item label="Html" value="html" />
+		<Picker.Item label="Cañada" value="html" />
 		<Picker.Item label="Javascript" value="javascript"/>
 		</Picker>
 		<Button title="Click me" onPress={this.clickme}/>
