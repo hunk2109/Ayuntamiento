@@ -30,7 +30,15 @@ export default class  rutas extends React.Component {
   }
 }
 };
-
+clickme=()=>{
+  var data = this.state.PickerValue;
+  if(data==""){
+    alert("Selecione una Ruta");
+  }else{
+    alert(data);
+  }
+  
+}
 
  
 
