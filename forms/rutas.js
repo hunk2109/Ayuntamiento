@@ -7,6 +7,7 @@ import { Dropdown } from 'react-native-material-dropdown';
 import { TextInput } from 'react-native';
 import { SafeAreaView } from 'react-navigation';
 import { SearchBar } from 'react-native-elements';
+import MapViewDirections from 'react-native-maps-directions';
 
 
 
@@ -40,25 +41,32 @@ export default class  rutas extends React.Component {
       }];
       
       var mapStyle=[{"elementType": "geometry", "stylers": [{"color": "#242f3e"}]},{"elementType": "labels.text.fill","stylers": [{"color": "#746855"}]},{"elementType": "labels.text.stroke","stylers": [{"color": "#242f3e"}]},{"featureType": "administrative.locality","elementType": "labels.text.fill","stylers": [{"color": "#d59563"}]},{"featureType": "poi","elementType": "labels.text.fill","stylers": [{"color": "#d59563"}]},{"featureType": "poi.park","elementType": "geometry","stylers": [{"color": "#263c3f"}]},{"featureType": "poi.park","elementType": "labels.text.fill","stylers": [{"color": "#6b9a76"}]},{"featureType": "road","elementType": "geometry","stylers": [{"color": "#38414e"}]},{"featureType": "road","elementType": "geometry.stroke","stylers": [{"color": "#212a37"}]},{"featureType": "road","elementType": "labels.text.fill","stylers": [{"color": "#9ca5b3"}]},{"featureType": "road.highway","elementType": "geometry","stylers": [{"color": "#746855"}]},{"featureType": "road.highway","elementType": "geometry.stroke","stylers": [{"color": "#1f2835"}]},{"featureType": "road.highway","elementType": "labels.text.fill","stylers": [{"color": "#f3d19c"}]},{"featureType": "transit","elementType": "geometry","stylers": [{"color": "#2f3948"}]},{"featureType": "transit.station","elementType": "labels.text.fill","stylers": [{"color": "#d59563"}]},{"featureType": "water","elementType": "geometry","stylers": [{"color": "#17263c"}]},{"featureType": "water","elementType": "labels.text.fill","stylers": [{"color": "#515c6d"}]},{"featureType": "water","elementType": "labels.text.stroke","stylers": [{"color": "#17263c"}]}];
-
+      const origin = {latitude: 19.33915, longitude: -70.93819};
+      const destination = {latitude: 19.345568, longitude: -70.947842};
+      const GOOGLE_MAPS_APIKEY = 'AIzaSyA5usGp5pk6nIHRlxE_2vTxRyOjLJQgC3g';
      
         return(  
         
           
 <View style={styles.container}>
 
-
-<MapView
-    initialRegion={this.state.region} style={styles.map}
-    customMapStyle={mapStyle} 
-  />
   
+  <MapView  initialRegion={this.state.region} style={styles.map}
+    customMapStyle={mapStyle} >
+      <MapViewDirections 
+      origin={origin}
+      destination={destination}
+      apikey={GOOGLE_MAPS_APIKEY}
+      />
+
+
+
+  </MapView>
   <View style={{width: 200, height: 44}}>
   <Dropdown style={styles.overlay}
-        label='Sector'
+        label='Rutas'
         data={data}
       />
-      
     </View>
   
     
