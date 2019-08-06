@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View, ActivityIndicator } from 'react-native';
+import { StyleSheet, Text, View, ActivityIndicator,Image } from 'react-native';
 
 import * as firebase from 'firebase';
 import { Header } from 'native-base';
@@ -28,6 +28,11 @@ export default class Londinscreen extends React.Component {
  render(){
   return (
     <View style={styles.container}>
+       <Image 
+
+source={require('../assets/logo.png')}
+
+/>  
       <ActivityIndicator  size="large"/>
     </View>
   );

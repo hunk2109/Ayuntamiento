@@ -11,13 +11,14 @@ import {
   createDrawerNavigator,
   createAppContainer,
   DrawerItems,
-  SafeAreaView,NavigationAction
+  SafeAreaView,NavigationAction,NavigationDrawerStructure
 } from 'react-navigation';
 
 import { Ionicons } from '@expo/vector-icons';
 import denuncias from './denuncias';
 import rutas from './rutas';
 import emer from './emer'
+
 
 
 class Home extends React.Component {
@@ -209,7 +210,7 @@ const navigator = createDrawerNavigator(
     
    Item1:{
 
-      screen:Home,
+      screen:Home
 
 
     },
