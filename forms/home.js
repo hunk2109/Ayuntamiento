@@ -47,7 +47,8 @@ registerforpush = async()=>{
   let uid = firebase.auth().currentUser.uid; 
   let una = firebase.auth().currentUser.displayName; 
   firebase.database().ref("user").child(uid).update({
-    expoPushToken: tocken
+    expoPushToken: tocken,
+    nombre:una
     
 
   });

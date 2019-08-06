@@ -49,7 +49,7 @@ export default class  denuncias extends React.Component {
     var newmesajeref = messagelistref.push();
     newmesajeref.set({
       text: message,
-      time: Date.now(),
+      time: Date.now().toString(),
       email: this.state.email,
       name: this.state.name
 
