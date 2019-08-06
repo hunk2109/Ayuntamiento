@@ -16,7 +16,8 @@ import {
 
 import { Ionicons } from '@expo/vector-icons';
 import denuncias from './denuncias';
-import rutas from './rutas'
+import rutas from './rutas';
+import emer from './emer'
 
 
 class Home extends React.Component {
@@ -200,12 +201,15 @@ const CustomDrawerContentComponent = props => (
 );
 
 const navigator = createDrawerNavigator(
+  
+    
+  
   {
 
     
    Item1:{
 
-      screen:Home
+      screen:Home,
 
 
     },
@@ -224,7 +228,22 @@ const navigator = createDrawerNavigator(
 
   },  
 
+  Emergencias:{
+    screen:emer ,navigationOptions:{
+      drawerIcon: ({ focused }) => (
+        <Ionicons name= "ios-trash" size={24} color={focused ? 'blue' : 'black'} />),
+          title: 'Numeros de emergencias',
+          headerTintColor: 'white',
+        
+  
+
+  }
+
+},
+
   },
+
+  
   
   
   {
@@ -250,12 +269,16 @@ const navigator = createDrawerNavigator(
                 { cancelable: false }
               )  
             }>
-              <Text style={{margin: 16,fontWeight: 'bold'}}>
-              <Ionicons name="ios-exit" size={24} color={ 'black'} />Salir</Text>
+              <View style={{ flexDirection: 'row',bottom:0 }}>
+
+              <Ionicons name="ios-exit" size={24} color={ 'black'} style={styles.iconContainer}/>
+              <Text style={styles.icon}>Salir</Text>
+              </View>
             </TouchableOpacity>
           </SafeAreaView>
       </View>
   ),
+  
   drawerOpenRoute: 'DrawerOpen',
   drawerCloseRoute: 'DrawerClose',
   drawerToggleRoute: 'DrawerToggle'
@@ -263,6 +286,7 @@ const navigator = createDrawerNavigator(
   
     
   },
+  
   {
     // even i tried: this.props.signOut()
    // 'drawerType: 'back',
@@ -321,14 +345,41 @@ const styles = StyleSheet.create({
       margin: 16,
       fontWeight: 'bold',
       color: 'rgba(0, 0, 0, .87)',
+      alignItems: 'center',
+
     },
     iconContainer: {
       marginHorizontal: 16,
       width: 24,
       alignItems: 'center',
     },
+    
     icon: {
-      width: 24,
-      height: 24,
-    }
+     
+      width: 40,           
+      left: 2, // Keep some space between your left border and Image
+      marginHorizontal: 16,
+      alignItems: 'center',
+      fontWeight: 'bold',
+
+
+
+    },
+    btnText: {
+      textAlign: 'center',
+      fontWeight: 'bold',
+      fontSize: 16,
+      color: 'white',
+      height:'100%',
+      width:'100%'
+    },
+    bottomView: {
+      width: '100%',
+      height: 50,
+      backgroundColor: '#EE5407',
+      justifyContent: 'center',
+      alignItems: 'center',
+      position: 'absolute', //Here is the trick
+      bottom: 0, //Here is the trick
+    },
   });

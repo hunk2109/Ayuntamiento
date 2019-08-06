@@ -85,7 +85,7 @@ source={require('../assets/logo.png')}
                 this.state.email,
                 this.state.password
               )
-          }}><Text style={styles.buttonText}>Singin</Text></Button>
+          }}><Text style={styles.buttonText}>Entrar</Text></Button>
       </Form>
       <View style={styles.footer}>
           <Text>O</Text>
