@@ -38,4 +38,3 @@ const Mainnavigator = createStackNavigator({
 
 const App = createAppContainer(Mainnavigator)
 export default App;
-

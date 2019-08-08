@@ -42,7 +42,7 @@ source={require('../assets/logo.png')}
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#20bf6b',
+    backgroundColor: '#019031',
     alignItems: 'center',
     justifyContent: 'center',
   },

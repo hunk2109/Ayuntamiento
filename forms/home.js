@@ -11,7 +11,7 @@ import {
   createDrawerNavigator,
   createAppContainer,
   DrawerItems,
-  SafeAreaView,NavigationAction,NavigationDrawerStructure
+  SafeAreaView,NavigationAction,  createStackNavigator,NavigationDrawerStructure
 } from 'react-navigation';
 
 import { Ionicons } from '@expo/vector-icons';
@@ -224,7 +224,7 @@ const navigator = createDrawerNavigator(
     Rutas:{
       screen: rutas,navigationOptions:{
         drawerIcon: ({ focused }) => (
-          <Ionicons name= "ios-trash" size={24} color={focused ? 'blue' : 'black'} />),DrawerLabel:"Rutas de recoleccion"
+          <Ionicons name= "ios-trash" size={24} color={focused ? 'blue' : 'black'} />),title:"Rutas de recoleccion"
     
         }
 
@@ -233,7 +233,7 @@ const navigator = createDrawerNavigator(
   Emergencias:{
     screen:emer ,navigationOptions:{
       drawerIcon: ({ focused }) => (
-        <Ionicons name= "ios-trash" size={24} color={focused ? 'blue' : 'black'} />),
+        <Ionicons name= "md-alert" size={24} color={focused ? 'blue' : 'black'} />),
           title: 'Numeros de emergencias',
           headerTintColor: 'white',
         
@@ -271,7 +271,7 @@ const navigator = createDrawerNavigator(
                 { cancelable: false }
               )  
             }>
-              <View style={{ flexDirection: 'row',bottom:0 }}>
+              <View style={{ flexDirection: 'row',alignItems: "center",marginTop:240,bottom:0 }}>
 
               <Ionicons name="ios-exit" size={24} color={ 'black'} style={styles.iconContainer}/>
               <Text style={styles.icon}>Salir</Text>
