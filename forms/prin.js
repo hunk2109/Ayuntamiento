@@ -15,6 +15,7 @@ import {
 import Home from './home';
 import denuncias from './denuncias';
 import rutas from './rutas';
+import Login from './Login';
  
 class NavigationDrawerStructure extends Component {
   //Structure for the navigatin Drawer
@@ -43,7 +44,7 @@ class NavigationDrawerStructure extends Component {
 const FirstActivity_StackNavigator = createStackNavigator({
   //All the screen from the Screen1 will be indexed here
   First: {
-    screen: Home,
+    screen: Login,
     navigationOptions: ({ navigation }) => ({
       title: 'Ayuntamiento',
       headerLeft: <NavigationDrawerStructure navigationProps={navigation} />,

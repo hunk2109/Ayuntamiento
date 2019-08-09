@@ -1,7 +1,7 @@
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import React,{Component} from 'react';
+import { StyleSheet, Text, View,TouchableOpacity,Image } from 'react-native';
 import * as firebase from 'firebase'
-import {createStackNavigator,createAppContainer} from 'react-navigation'
+import {createStackNavigator,createAppContainer,createDrawerNavigator} from 'react-navigation'
 
 // Your web app's Firebase configuration
 var firebaseConfig = {
@@ -23,11 +23,38 @@ import singup from './forms/singup'
 import denuncias from './forms/denuncias';
 
 
-
+class NavigationDrawerStructure extends Component {
+  //Structure for the navigatin Drawer
+  toggleDrawer = () => {
+    //Props to open/close the drawer
+    this.props.navigationProps.toggleDrawer();
+  };
+  render() {
+    return (
+      <View style={{ flexDirection: 'row' }}>
+        <TouchableOpacity onPress={this.toggleDrawer.bind(this)}>
+          {/*Donute Button Image */}
+          <Image
+            source={require('./assets/logo.png')}
+            style={{ width: 25, height: 25, marginLeft: 5 }}
+          />
+        </TouchableOpacity>
+      </View>
+    );
+  }
+}
 const Mainnavigator = createStackNavigator({
   londing:{screen: Londingscreen},
   Login:{screen: Login},
-  Home:{screen: Home},
+  Home:{screen: Home,
+    navigationOptions: ({ navigation }) => ({
+      title: 'Ayuntamiento',
+      headerLeft: <NavigationDrawerStructure navigationProps={navigation} />,
+      headerStyle: {
+        backgroundColor: '#019031',
+      },
+      headerTintColor: '#fff',
+    }),},
   Singup: {screen: singup},
   Denucias: {screen:denuncias}
 },

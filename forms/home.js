@@ -59,7 +59,9 @@ registerforpush = async()=>{
     this.state = {
       name:"",
       email:"",
-      message:""
+      message:"",
+      
+
 
     }
 
@@ -105,7 +107,6 @@ registerforpush = async()=>{
   }
 
   
-
   render() {
     return (
       <View style={styles.container}>
@@ -218,7 +219,7 @@ const navigator = createDrawerNavigator(
     Denuncias :{
       screen: denuncias, navigationOptions:{
         drawerIcon: ({ focused }) => (
-          <Ionicons name="md-person" size={24} color={focused ? 'blue' : 'black'} />)
+          <Ionicons name="md-person" size={24} color={focused ? 'blue' : 'black'} />),title: 'Denuncias'
       }
     },
     Rutas:{

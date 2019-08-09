@@ -49,8 +49,9 @@ export default class Login extends React.Component {
 
 source={require('../assets/logo.png')}
 
+
 />          
-       </View>
+       </View >
       <Form style={styles.form}>
           <Item floatingLabel>
               <Label>Email</Label>

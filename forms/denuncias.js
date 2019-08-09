@@ -1,16 +1,38 @@
-import React from 'react';
-import { StyleSheet, Text, View,KeyboardAvoidingView,FlatList } from 'react-native';
+import React,{Component} from 'react';
+import { StyleSheet, Text, View,KeyboardAvoidingView,FlatList,TouchableOpacity,Image } from 'react-native';
 import {Input,Card,Button,Icon, Item} from 'native-base'
 import * as firebase from 'firebase'
-
+import {ImagePicker, Permissions, Constants} from 'expo';
 
 
 export default class  denuncias extends React.Component { 
 
-
+  
 
  
-  
+   getPermissionAsync = async () => {
+    if (Constants.platform.ios) {
+      const { status } = await Permissions.askAsync(Permissions.CAMERA_ROLL);
+      if (status !== 'granted') {
+        alert('Sorry, we need camera roll permissions to make this work!');
+      }
+    }
+  }
+
+  _pickImage = async () => {
+    let result = await ImagePicker.launchImageLibraryAsync({
+      mediaTypes: ImagePicker.MediaTypeOptions.All,
+      allowsEditing: true,
+      aspect: [4, 3],
+    });
+
+    console.log(result);
+
+    if (!result.cancelled) {
+      this.setState({ image: result.uri });
+    }
+  };
+
 
 
 
@@ -20,7 +42,8 @@ export default class  denuncias extends React.Component {
       message:"",
       messagelist:[],
       name:"",
-      email:""
+      email:"",
+      image: null
     }
 
     
@@ -40,8 +63,13 @@ export default class  denuncias extends React.Component {
         
       }
     })
+
+        this.getPermissionAsync();
   
   }
+
+  
+
 
 
   sendmessage = message=>{
@@ -80,11 +108,26 @@ export default class  denuncias extends React.Component {
 
 
   render() {
+    
+    let { image } = this.state;
+
     return(
       <KeyboardAvoidingView behavior="padding" enabled style={styles.container}>
         <View style={styles.header}>
           <Text style={styles.headerText}>Mensajes</Text>
         </View>
+
+
+        <View style={styles.btn}>
+        <Button style={styles.btn}
+          title="Pick an image from camera roll"
+          onPress={this._pickImage}
+        />
+        {image &&
+          <Image source={{ uri: image }} style={styles.image} />}
+      </View>
+
+       
 
         
           <View style={styles.inputContainer}>
@@ -122,6 +165,7 @@ const styles = StyleSheet.create({
     marginTop: 25,
     margin: 2,
     backgroundColor: "#01CBC6"
+   
   },
   header: {
     backgroundColor: "#2B2B52",
@@ -153,6 +197,12 @@ const styles = StyleSheet.create({
     borderWidth: 5,
     borderRadius: 15,
     borderColor: "#2B2B52",
-    color: "#fff"
+    color: "#fff",
+    marginTop:50
+  },
+  btn:{
+    marginTop:50,
+    marginHorizontal:50
+
   }
 });
