@@ -118,18 +118,18 @@ export default class  denuncias extends React.Component {
         </View>
 
 
-        <View style={styles.btn}>
-        <Button style={styles.btn}
-          title="Pick an image from camera roll"
-          onPress={this._pickImage}
-        />
+        <FlatList>
         {image &&
-          <Image source={{ uri: image }} style={styles.image} />}
-      </View>
+          <Image source={{ uri: image }} style={{ width: 200, height: 200 }} />}
+        </FlatList>
 
        
 
-        
+        <TouchableOpacity style={styles.btn} onPress={this._pickImage}>
+          <View>
+            <Text style={styles.btnTxt}>Pick image</Text>
+          </View>
+        </TouchableOpacity>
           <View style={styles.inputContainer}>
             <Input onChangeText ={text => {
               this.setState({message: text})
@@ -197,5 +197,34 @@ const styles = StyleSheet.create({
     borderRadius: 15,
     borderColor: "#2B2B52",
     color: "#fff"
+  },
+  welcome: {
+    fontSize: 20,
+    textAlign: 'center',
+    margin: 10
+  },
+  instructions: {
+    textAlign: 'center',
+    color: '#333333',
+    marginBottom: 5
+  },
+  btn: {
+    borderWidth: 1,
+    paddingLeft: 20,
+    paddingRight: 20,
+    paddingTop: 10,
+    paddingBottom: 10,
+    borderRadius: 20,
+    borderColor: 'rgba(0,0,0,0.3)',
+    backgroundColor: 'rgb(68, 99, 147)'
+  },
+  btnTxt: {
+    color: '#fff'
+  },
+  image: {
+    marginTop: 20,
+    minWidth: 200,
+    height: 200
   }
+
 });
