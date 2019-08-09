@@ -165,7 +165,6 @@ const styles = StyleSheet.create({
     marginTop: 25,
     margin: 2,
     backgroundColor: "#01CBC6"
-   
   },
   header: {
     backgroundColor: "#2B2B52",
@@ -197,12 +196,6 @@ const styles = StyleSheet.create({
     borderWidth: 5,
     borderRadius: 15,
     borderColor: "#2B2B52",
-    color: "#fff",
-    marginTop:50
-  },
-  btn:{
-    marginTop:50,
-    marginHorizontal:50
-
+    color: "#fff"
   }
 });
