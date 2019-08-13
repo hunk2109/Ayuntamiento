@@ -48,7 +48,7 @@ const Mainnavigator = createStackNavigator({
   Login:{screen: Login},
   Home:{screen: Home,
     navigationOptions: ({ navigation }) => ({
-      title: 'Ayuntamiento',
+      title: 'Inicio',
       headerLeft: <NavigationDrawerStructure navigationProps={navigation} />,
       headerStyle: {
         backgroundColor: '#019031',
@@ -56,7 +56,14 @@ const Mainnavigator = createStackNavigator({
       headerTintColor: '#fff',
     }),},
   Singup: {screen: singup},
-  Denucias: {screen:denuncias}
+  Denucias: {screen:denuncias},navigationOptions: ({ navigation }) => ({
+    title: 'Ayuntamiento',
+    headerLeft: <NavigationDrawerStructure navigationProps={navigation} />,
+    headerStyle: {
+      backgroundColor: '#019031',
+    },
+    headerTintColor: '#fff',
+  })
 },
 {
   initialRouteName: "londing"

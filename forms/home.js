@@ -1,8 +1,10 @@
 import React from 'react';
-import { StyleSheet, Text, View,Image,TouchableOpacity,Alert,colors } from 'react-native';
-import {Button} from 'native-base';
+import { StyleSheet, Text, View,Image,TouchableOpacity,Alert, Dimensions,colors } from 'react-native';
+import { Container, Header, Body, Title, Content, Card, CardItem, Button, Left } from 'native-base';
 import * as firebase from 'firebase';
 import {Permissions,Notifications} from 'expo';
+import Moment from 'moment';
+import HTML from 'react-native-render-html';
 
 
 
@@ -60,6 +62,7 @@ registerforpush = async()=>{
       name:"",
       email:"",
       message:"",
+      posts: [],
       
 
 
@@ -92,6 +95,18 @@ registerforpush = async()=>{
 
     this.registerforpush();
 
+    fetch(`http://wp.sajomaescucha.com/wp-json/wp/v2/posts?_embed`)
+        .then((response) => response.json())
+        .then((responseJson) => {
+          this.setState({
+            isLoading: false,
+            posts: responseJson,
+          })
+        })
+        .catch((error) => {
+          console.error(error);
+        }); 
+
 
 
 
@@ -108,27 +123,59 @@ registerforpush = async()=>{
 
   
   render() {
+    if (this.state.isLoading == true) {
+      return(
+        <View style={{ flex: 1, flexDirection: 'column', justifyContent: 'center', alignItems: 'center',}}>
+          <ActivityIndicator size="large" color="#1C97F7" />
+        </View>
+      )
+    }
+    else{
+    Moment.locale('en');    
     return (
-      <View style={styles.container}>
-      <View style={styles.logoContainer}>
-     <Image 
-     source={require('../assets/logo.png')}
-     />
-     <Text>ayuntamineto</Text>
+      <Container>
 
-     </View>
-     <View style={styles.paragraph}>
+        <Header androidStatusBarColor="#004447" style={{ backgroundColor: '"#fff"' }}>
+          <Body style = {{ flex: 1, flexDirection: 'column', justifyContent: 'center', alignItems: 'center', }}>
+            <Title style={{color:"#2C3335"}}>Noticias</Title>
+          </Body>
+        </Header>
 
-       <Text>hola: {this.state.name}</Text>
-       <Text>prueba: {this.state.email}</Text>
-
-     </View>
-     
-     
-
-    </View>
-  );
-
+        <Content>
+        {this.state.posts.map((item, index) => (
+          <Card style={{flex: 0}} key = {item.id}>
+            <CardItem>
+              <Left>
+                <Body>
+                  <Text style = {{ fontSize: 24, fontWeight:'bold' }}>{item.title.rendered}</Text>
+                  <Text note>Published on: {Moment(item.date).format('d MMM Y')}</Text>
+                </Body>
+              </Left>
+            </CardItem>
+            <CardItem>
+              {item._embedded['wp:featuredmedia'].filter( element => element.id == item.featured_media).map((subitem, index) => (
+                  <Image source={{uri: subitem.media_details.sizes.medium.source_url}} style={{height: 200, width: 200, flex: 1}} key = {item.id}/>
+                  ))}
+            </CardItem>
+            <CardItem>
+                <HTML html={item.content.rendered} imagesMaxWidth={Dimensions.get('window').width} />
+            </CardItem>
+            <CardItem>
+              <Left>
+                <Button transparent textStyle={{color: '#87838B'}}>
+                  <Text>Author:</Text>
+                  {item._embedded.author.filter( element => element.id ==item.author).map((subitem, index) => (
+                  <Text key = {item.id}>{subitem.name}</Text>
+                  ))}
+                </Button>
+              </Left>
+            </CardItem>
+          </Card>
+        ))}
+        </Content>
+      </Container>
+    )
+  }
   }
 }
 
