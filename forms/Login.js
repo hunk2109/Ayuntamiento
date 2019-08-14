@@ -1,9 +1,9 @@
 import React from 'react';
-import { StyleSheet, Text, View,KeyboardAvoidingView,Image,TouchableOpacity } from 'react-native';
+import { StyleSheet, Text, View,KeyboardAvoidingView,Image,TouchableOpacity,ImageBackground } from 'react-native';
 
 import * as firebase from 'firebase'
 import {Form,Item,Input,Label,Button} from 'native-base'
-import { logOutAsync } from 'expo/build/Google';
+import * as Facebook from 'expo-facebook';
  
 
 export default class Login extends React.Component {
@@ -23,6 +23,29 @@ export default class Login extends React.Component {
         header: "none"
     };
 
+
+    componentDidMount() {
+
+      firebase.auth().onAuthStateChanged((user) => {
+        if (user != null) {
+          console.log(user)
+        }
+      })
+    }
+    async loginWithFacebook() {
+
+      //ENTER YOUR APP ID 
+      const { type, token } = await Facebook.logInWithReadPermissionsAsync('897167117298559', { permissions: ['public_profile'] })
+  
+      if (type == 'success') {
+  
+        const credential = firebase.auth.FacebookAuthProvider.credential(token)
+  
+        firebase.auth().signInWithCredential(credential).then(()=>{this.props.navigation.replace("Home")}).catch((error) => {
+          console.log(error)
+        })
+      }
+    }
     SingInUser = (email,password) =>{
 
       firebase
@@ -39,6 +62,12 @@ export default class Login extends React.Component {
 
     render(){
   return (
+    <ImageBackground
+  source={require('../assets/imgbg.jpg')}
+  style={{width: '100%', height: '100%'}}
+> 
+    
+
     <KeyboardAvoidingView
     behavior="position" enabled style={styles.container}
     
@@ -86,7 +115,17 @@ source={require('../assets/logo.png')}
                 this.state.email,
                 this.state.password
               )
-          }}><Text style={styles.buttonText}>Entrar</Text></Button>
+          }}><Text style={styles.buttonText}>Entrar</Text>
+          </Button>
+          <Button style={styles.button}
+          full
+          rounded
+          onPress={()=>{
+
+            this.loginWithFacebook()
+              
+          }}><Text style={styles.buttonText}>Facebook</Text>
+          </Button>
       </Form>
       <View style={styles.footer}>
           <Text>O</Text>
@@ -97,6 +136,7 @@ source={require('../assets/logo.png')}
           </TouchableOpacity>
       </View>
    </KeyboardAvoidingView>
+   </ImageBackground>
   );
 }
 }
@@ -126,9 +166,9 @@ source={require('../assets/logo.png')}
      
     },
     form: {
-      padding: 20,
+      padding: 5,
       width: "100%",
-      marginBottom: 30,
+      marginBottom: 5,
       
     },
     button: {

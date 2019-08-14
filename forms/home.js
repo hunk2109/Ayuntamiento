@@ -20,6 +20,7 @@ import { Ionicons } from '@expo/vector-icons';
 import denuncias from './denuncias';
 import rutas from './rutas';
 import emer from './emer'
+import quejas from './quejas' 
 
 
 
@@ -291,6 +292,16 @@ const navigator = createDrawerNavigator(
 
 },
 
+Quejas:{
+  screen:quejas,navigationOptions:{
+    drawerIcon: ({ focused }) => (
+      <Ionicons name= "md-alert" size={24} color={focused ? 'blue' : 'black'} />),
+        title: 'Quejas y sujerencias',
+        headerTintColor: 'white',
+      
+}
+},
+
   },
 
   
@@ -319,7 +330,7 @@ const navigator = createDrawerNavigator(
                 { cancelable: false }
               )  
             }>
-              <View style={{ flexDirection: 'row',alignItems: "center",marginTop:240,bottom:0 }}>
+              <View style={{ flexDirection: 'row',alignItems: "center",marginTop:180,bottom:0 }}>
 
               <Ionicons name="ios-exit" size={24} color={ 'black'} style={styles.iconContainer}/>
               <Text style={styles.icon}>Salir</Text>

@@ -1,8 +1,9 @@
 import React,{Component} from 'react';
-import { StyleSheet, Text, View,KeyboardAvoidingView,FlatList,TouchableOpacity,Image } from 'react-native';
+import { StyleSheet, Text, View,KeyboardAvoidingView,FlatList,TouchableOpacity,Image,Alert } from 'react-native';
 import {Input,Card,Button,Icon, Item} from 'native-base'
 import * as firebase from 'firebase'
 import {ImagePicker, Permissions, Constants} from 'expo';
+
 
 
 export default class  denuncias extends React.Component { 
@@ -20,18 +21,27 @@ export default class  denuncias extends React.Component {
   }
 
   _pickImage = async () => {
-    let result = await ImagePicker.launchImageLibraryAsync({
-      mediaTypes: ImagePicker.MediaTypeOptions.All,
-      allowsEditing: true,
-      aspect: [4, 3],
-    });
-
-    console.log(result);
-
+    let uid = firebase.auth().currentUser.uid; 
+    let result = await ImagePicker.launchImageLibraryAsync();
     if (!result.cancelled) {
-      this.setState({ image: result.uri });
+      this.uploadimg(result.uri, uid)
+      .then(() => {
+        Alert.alert("Enviada")
+
+      }).catch((error) =>{
+        Alert.alert("error"+error)
+
+      } )
     }
   };
+
+
+  uploadimg = async(uri,imgname)=>{
+    const response = await fetch(uri);
+    const blob = await response.blob();
+    var ref = firebase.storage().ref().child("img/"+imgname);
+    return ref.put(blob);
+  }
 
 
 
@@ -43,7 +53,8 @@ export default class  denuncias extends React.Component {
       messagelist:[],
       name:"",
       email:"",
-      image: null
+      image: null,
+      ID:""
     }
 
     
@@ -51,6 +62,7 @@ export default class  denuncias extends React.Component {
 
   componentDidMount(){
   
+    
     firebase.auth().onAuthStateChanged(authenticate =>{
       if (authenticate) {
         this.setState({
@@ -73,13 +85,15 @@ export default class  denuncias extends React.Component {
 
 
   sendmessage = message=>{
-    var messagelistref = firebase.database().ref("Mensajes");
+    let uid = firebase.auth().currentUser.uid; 
+    var messagelistref = firebase.database().ref("Denuncias").child(uid);
     var newmesajeref = messagelistref.push();
     newmesajeref.set({
       text: message,
       time: Date.now().toString(),
       email: this.state.email,
-      name: this.state.name
+      name: this.state.name,
+      
 
     });
 

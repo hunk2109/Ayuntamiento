@@ -9,7 +9,7 @@ var firebaseConfig = {
   authDomain: "reactprueba-e767e.firebaseapp.com",
   databaseURL: "https://reactprueba-e767e.firebaseio.com",
   projectId: "reactprueba-e767e",
-  storageBucket: "",
+  storageBucket: "reactprueba-e767e.appspot.com",
   messagingSenderId: "445878659414",
   appId: "1:445878659414:web:fbcb806bebc25363"
 };
@@ -56,14 +56,7 @@ const Mainnavigator = createStackNavigator({
       headerTintColor: '#fff',
     }),},
   Singup: {screen: singup},
-  Denucias: {screen:denuncias},navigationOptions: ({ navigation }) => ({
-    title: 'Ayuntamiento',
-    headerLeft: <NavigationDrawerStructure navigationProps={navigation} />,
-    headerStyle: {
-      backgroundColor: '#019031',
-    },
-    headerTintColor: '#fff',
-  })
+  Denucias: {screen:denuncias},
 },
 {
   initialRouteName: "londing"
