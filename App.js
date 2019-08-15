@@ -21,6 +21,13 @@ import Home from './forms/home'
 import Login from './forms/Login'
 import singup from './forms/singup'
 import denuncias from './forms/denuncias';
+import centro from './forms/centro';
+import Cañada from './forms/Cañada'
+import avenida from './forms/avenida'
+import duarte from './forms/duarte'
+import valerio from './forms/valerio'
+import canada from './forms/canada' 
+
 
 
 class NavigationDrawerStructure extends Component {
@@ -57,6 +64,14 @@ const Mainnavigator = createStackNavigator({
     }),},
   Singup: {screen: singup},
   Denucias: {screen:denuncias},
+  Centro:{screen:centro},
+  Cañada:{screen:Cañada},
+  Avenida:{screen:avenida},
+  Duarte:{screen:duarte},
+  Valerio:{screen:valerio},
+  Canada:{screen:canada}
+
+
 },
 {
   initialRouteName: "londing"

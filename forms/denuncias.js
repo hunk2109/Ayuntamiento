@@ -141,7 +141,7 @@ export default class  denuncias extends React.Component {
 
         <TouchableOpacity style={styles.btn} onPress={this._pickImage}>
           <View>
-            <Text style={styles.btnTxt}>Pick image</Text>
+            <Text style={styles.btnTxt}>Escoge una imagen</Text>
           </View>
         </TouchableOpacity>
           <View style={styles.inputContainer}>
@@ -178,7 +178,7 @@ const styles = StyleSheet.create({
     flex: 1,
     marginTop: 25,
     margin: 2,
-    backgroundColor: "#01CBC6"
+    backgroundColor: "#fff"
   },
   header: {
     backgroundColor: "#2B2B52",

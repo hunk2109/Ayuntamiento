@@ -295,8 +295,8 @@ const navigator = createDrawerNavigator(
 Quejas:{
   screen:quejas,navigationOptions:{
     drawerIcon: ({ focused }) => (
-      <Ionicons name= "md-alert" size={24} color={focused ? 'blue' : 'black'} />),
-        title: 'Quejas y sujerencias',
+      <Ionicons name= "md-hand" size={24} color={focused ? 'blue' : 'black'} />),
+        title: 'Quejas y sugerencias',
         headerTintColor: 'white',
       
 }

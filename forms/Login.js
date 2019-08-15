@@ -41,7 +41,9 @@ export default class Login extends React.Component {
   
         const credential = firebase.auth.FacebookAuthProvider.credential(token)
   
-        firebase.auth().signInWithCredential(credential).then(()=>{this.props.navigation.replace("Home")}).catch((error) => {
+        firebase.auth().signInWithCredential(credential)
+        .then(()=>{this.props.navigation.replace("Home")})
+        .catch((error) => {
           console.log(error)
         })
       }
@@ -146,7 +148,7 @@ source={require('../assets/logo.png')}
     container: {
       flex: 1,
       justifyContent: 'center',      
-      backgroundColor: '#F5FCFF',
+      backgroundColor: '#019031',
       borderWidth: 1,
       flexDirection: 'column',
       
