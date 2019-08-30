@@ -97,10 +97,7 @@ export default class  quejas extends React.Component {
             </View>
     
     
-            <FlatList>
-            {image &&
-              <Image source={{ uri: image }} style={{ width: 200, height: 200 }} />}
-            </FlatList>
+            
     
            
     

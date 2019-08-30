@@ -10,6 +10,7 @@
       "web"
     ],
     "android": {
+      "versionCode": 2,
       "package": "com.hunk2109.Ayuntsajoma",
       "config": {
         "googleMaps": {
@@ -17,7 +18,10 @@
         }
       }
     },
-    "version": "1.0.0",
+    "packagerOpts": {
+      "nonPersistent": true
+    },
+    "version": "1.0.0.1.1",
     "orientation": "portrait",
     "icon": "./assets/100.png",
     "splash": {

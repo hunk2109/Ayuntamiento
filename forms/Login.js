@@ -64,10 +64,8 @@ export default class Login extends React.Component {
 
     render(){
   return (
-    <ImageBackground
-  source={require('../assets/imgbg.jpg')}
-  style={{width: '100%', height: '100%'}}
-> 
+ 
+
     
 
     <KeyboardAvoidingView
@@ -102,7 +100,7 @@ source={require('../assets/logo.png')}
 
               autoCorrect={false}
               autoCapitalize="none"
-              keyboardType="p" 
+              keyboardType="email-address" 
               onChangeText={password=> this.setState({password})}
 
               
@@ -138,7 +136,7 @@ source={require('../assets/logo.png')}
           </TouchableOpacity>
       </View>
    </KeyboardAvoidingView>
-   </ImageBackground>
+  
   );
 }
 }

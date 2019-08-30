@@ -116,7 +116,6 @@ const styles = StyleSheet.create({
 MainContainerAddCamp :{
 flex:1,
 margin: 10,
-paddingTop: (Platform.OS === 'ios') ? 20 : 20,
 padding: 5,
 },
 TextInputStyleClass: {

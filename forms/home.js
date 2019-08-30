@@ -2,10 +2,10 @@ import React from 'react';
 import { StyleSheet, Text, View,Image,TouchableOpacity,Alert, Dimensions,colors } from 'react-native';
 import { Container, Header, Body, Title, Content, Card, CardItem, Button, Left } from 'native-base';
 import * as firebase from 'firebase';
-import {Permissions,Notifications} from 'expo';
+import {Notifications} from 'expo';
 import Moment from 'moment';
 import HTML from 'react-native-render-html';
-
+import * as Permissions from 'expo-permissions'
 
 
 
@@ -25,7 +25,21 @@ import quejas from './quejas'
 
 
 class Home extends React.Component {
+  constructor(props){
+    super(props)
+    this.state = {
+      name:"",
+      email:"",
+      message:"",
+      posts: [],
+      loading: true 
 
+
+    }
+
+    
+  }
+  
   
 
 registerforpush = async()=>{
@@ -57,20 +71,7 @@ registerforpush = async()=>{
   });
 }
 
-  constructor(props){
-    super(props)
-    this.state = {
-      name:"",
-      email:"",
-      message:"",
-      posts: [],
-      
-
-
-    }
-
-    
-  }
+  
   static navigationOptions = {
     title: 'Inicio',
     drawerIcon: ({ focused }) => (
@@ -113,6 +114,8 @@ registerforpush = async()=>{
 
   
   }
+
+ 
   
   Singoutuser=()=>{
     firebase
