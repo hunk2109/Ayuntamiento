@@ -83,14 +83,14 @@ export default class singup extends React.Component {
               
               />
           </Item>
-          <Item floatingLabel>
+          <Item floatingLabel >
               <Label>Contraseña</Label>
               <Input
               secureTextEntry={true}
 
               autoCorrect={false}
               autoCapitalize="none"
-              keyboardType="default" 
+              keyboardType= "default"
               onChangeText={password=> this.setState({password})}
 
               

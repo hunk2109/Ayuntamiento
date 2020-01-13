@@ -18,6 +18,8 @@ export default class  duarte extends React.Component {
     
   }
 
+  
+
   constructor(props) {
     super(props);
     this.state = { region:{
@@ -28,6 +30,7 @@ export default class  duarte extends React.Component {
   }
 }
 }
+
 
  
 
@@ -58,7 +61,8 @@ export default class  duarte extends React.Component {
 <View style={styles.container}>
 
   
-  <MapView  initialRegion={this.state.region} style={styles.map}
+  <MapView  initialRegion={this.state.region} showsUserLocation={true}
+	showsMyLocationButton={true} style={styles.map}
     customMapStyle={mapStyle} >
       <MapViewDirections 
       origin={origin}

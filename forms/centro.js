@@ -3,6 +3,7 @@ import { StyleSheet, Text, View,KeyboardAvoidingView,FlatList,StatusBar,Touchabl
 import {Input,Card,Button,Icon, Item} from 'native-base'
 import * as firebase from 'firebase'
 import MapView from 'react-native-maps'
+import { Marker } from 'react-native-maps';
 import { Dropdown } from 'react-native-material-dropdown';
 import { TextInput } from 'react-native';
 import { SafeAreaView } from 'react-navigation';
@@ -13,83 +14,75 @@ import MapViewDirections from 'react-native-maps-directions';
 
 export default class  centro extends React.Component { 
 
-  rutasb=()=>{
-     
-    
+ 
+
+  componentDidMount(){
+    this.watchPassenger()
+
+
   }
 
+  
   constructor(props) {
     super(props);
-    this.state = { region:{
+  this.state = {passengerPosition: {
+    latitude: 0, 
+    longitude: 0, 
+    
+    }, 
+  region:{
     latitude: 19.33915,
     longitude:  -70.93819,
     latitudeDelta: 0.0122,
     longitudeDelta: 0.0121,
   }
+ } 
 }
-}
+ 
+watchPassenger() {  
+  const positionOptions = {    
+    enableHighAccuracy: true, 
+   }
+
+    navigator.geolocation.watchPosition(pos => {   
+       this.updatePassengerPosition({latitude: pos.coords.latitude,
+                                    longitude: pos.coords.longitude,
+                                    })
+                                    },
+                                     positionOptions) 
+                                     
+                                    
+                                    
+                                    
+                                    }
+
+       updatePassengerPosition(passengerPosition) {  
+         this.setState({passengerPosition})
+         let uid = firebase.auth().currentUser.uid; 
+ 
+        const user = firebase.database().ref('posicion/' + uid)  
+        user.update({passengerPosition}) 
+        console.log('prueba') 
+        console.log(passengerPosition) 
+      }
+
+
+
+       
+
+        
+
+
 
  
-
-    render(){  
-
-      let data = [{
-        value: 'Lunes',
-      }, {
-        value: 'Martes',
-      }, {
-        value: 'Miercoles',
-
-      },{
-        value: 'Jueves',
-      },{
-        value: 'Viernes',
-      },
-    ];
-      
-      var mapStyle=[{"elementType": "geometry", "stylers": [{"color": "#242f3e"}]},{"elementType": "labels.text.fill","stylers": [{"color": "#746855"}]},{"elementType": "labels.text.stroke","stylers": [{"color": "#242f3e"}]},{"featureType": "administrative.locality","elementType": "labels.text.fill","stylers": [{"color": "#d59563"}]},{"featureType": "poi","elementType": "labels.text.fill","stylers": [{"color": "#d59563"}]},{"featureType": "poi.park","elementType": "geometry","stylers": [{"color": "#263c3f"}]},{"featureType": "poi.park","elementType": "labels.text.fill","stylers": [{"color": "#6b9a76"}]},{"featureType": "road","elementType": "geometry","stylers": [{"color": "#38414e"}]},{"featureType": "road","elementType": "geometry.stroke","stylers": [{"color": "#212a37"}]},{"featureType": "road","elementType": "labels.text.fill","stylers": [{"color": "#9ca5b3"}]},{"featureType": "road.highway","elementType": "geometry","stylers": [{"color": "#746855"}]},{"featureType": "road.highway","elementType": "geometry.stroke","stylers": [{"color": "#1f2835"}]},{"featureType": "road.highway","elementType": "labels.text.fill","stylers": [{"color": "#f3d19c"}]},{"featureType": "transit","elementType": "geometry","stylers": [{"color": "#2f3948"}]},{"featureType": "transit.station","elementType": "labels.text.fill","stylers": [{"color": "#d59563"}]},{"featureType": "water","elementType": "geometry","stylers": [{"color": "#17263c"}]},{"featureType": "water","elementType": "labels.text.fill","stylers": [{"color": "#515c6d"}]},{"featureType": "water","elementType": "labels.text.stroke","stylers": [{"color": "#17263c"}]}];
-
-      const origin = {latitude: 19.338121, longitude: -70.937506};
-      const destination = {latitude: 19.335206, longitude: -70.926563};
-      const GOOGLE_MAPS_APIKEY = 'AIzaSyA5usGp5pk6nIHRlxE_2vTxRyOjLJQgC3g';
-        return(  
-        
-          
-<View style={styles.container}>
-
   
-  <MapView  initialRegion={this.state.region} style={styles.map}
-    customMapStyle={mapStyle} >
-      <MapViewDirections 
-      origin={origin}
-      destination={destination}
-      apikey={GOOGLE_MAPS_APIKEY}
-      />
-
-
-
-  </MapView>
-  <View style={{width: 200, height: 50}}>
-  <Dropdown style={styles.overlay}
-        label='Dias'
-        data={data}
-      />
-    </View>
-  
-    
-  
-</View>
-        
-   
-                                        
-
-          
+  render() {  
+       return (      
+       <MapView  initialRegion={this.state.region} style={styles.map}>
+         <Marker coordinate={this.state.passengerPosition} />     
        
-    
-
-      );
-    }
-            
+        </MapView>) 
+         } 
     
 }
 

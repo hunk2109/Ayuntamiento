@@ -93,14 +93,14 @@ source={require('../assets/logo.png')}
               
               />
           </Item>
-          <Item floatingLabel>
+          <Item floatingLabel >
               <Label>Contraseña</Label>
               <Input
               secureTextEntry={true}
 
               autoCorrect={false}
               autoCapitalize="none"
-              keyboardType="email-address" 
+              keyboardType= "default"
               onChangeText={password=> this.setState({password})}
 
               

@@ -2,7 +2,10 @@ import React,{Component} from 'react';
 import { StyleSheet, Text, View,KeyboardAvoidingView,FlatList,TouchableOpacity,Image } from 'react-native';
 import {Input,Card,Button,Icon, Item} from 'native-base'
 import * as firebase from 'firebase'
-import {ImagePicker, Permissions, Constants} from 'expo';
+import {ImagePicker} from 'expo';
+import Constants from 'expo-constants'
+import * as Permissions from 'expo-permissions'
+
 
 
 

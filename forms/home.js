@@ -6,6 +6,7 @@ import {Notifications} from 'expo';
 import Moment from 'moment';
 import HTML from 'react-native-render-html';
 import * as Permissions from 'expo-permissions'
+import Constants from 'expo-constants'
 
 
 
@@ -41,7 +42,11 @@ class Home extends React.Component {
   }
   
   
-
+ 
+    
+  getLocationAsync = async () => {
+    await Permissions.askAsync(Permissions.LOCATION);
+  }
 registerforpush = async()=>{
   const {status} = await Permissions.getAsync(Permissions.NOTIFICATIONS);
   let finalstatus = status;
@@ -94,6 +99,8 @@ registerforpush = async()=>{
         
       }
     });
+
+    this.getLocationAsync();
 
     this.registerforpush();
 
